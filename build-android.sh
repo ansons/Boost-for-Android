@@ -28,7 +28,7 @@
 # -----------------------
 
 NUM_CONCURRENT_JOBS=2
-register_option "--jobs=<num-concurrent-jobs> Number of concurent jobs. Default value is 2"
+register_option "--jobs=<num-concurrent-jobs>" set_num_concurrent_jobs "Number of concurent jobs. Default value is 2"
 set_num_concurrent_jobs()
 {
   NUM_CONCURRENT_JOBS=$1
@@ -415,6 +415,7 @@ echo "Building boost for android"
          $LIBRARIES                   \
          install 2>&1                 \
          --without-python             \
+         -j${NUM_CONCURRENT_JOBS}     \
          || { dump "ERROR: Failed to build boost for android!" ; exit 1 ; }
   } | tee -a $PROGDIR/build.log
 
