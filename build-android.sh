@@ -28,7 +28,7 @@
 # -----------------------
 
 NUM_CONCURRENT_JOBS=2
-register_option "--jobs=<num-concurrent-jobs> Number of concurent jobs. Default value is 2"
+register_option "--jobs=<num-concurrent-jobs>" set_num_concurrent_jobs "Number of concurent jobs. Default value is 2"
 set_num_concurrent_jobs()
 {
   NUM_CONCURRENT_JOBS=$1
@@ -266,6 +266,11 @@ case "$NDK_RN" in
 		TOOLSET=gcc-androidR8e
 		;;
 	"10 (64-bit)")
+		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
+                CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
+                TOOLSET=gcc-androidR8e
+                ;;
+	"10b (64-bit)")
 		TOOLCHAIN=${TOOLCHAIN:-arm-linux-androideabi-4.6}
                 CXXPATH=$AndroidNDKRoot/toolchains/${TOOLCHAIN}/prebuilt/${PlatformOS}-x86_64/bin/arm-linux-androideabi-g++
                 TOOLSET=gcc-androidR8e
